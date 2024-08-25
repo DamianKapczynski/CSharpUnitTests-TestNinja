@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using System;
+using System.Linq;
 using Math = TestNinja.Fundamentals.Math;
 
 namespace TestNinja.UnitTests
@@ -33,6 +35,24 @@ namespace TestNinja.UnitTests
 
             Assert.AreEqual(result, expectedResult);
 
+        }
+
+        [Test]
+        [TestCase(5, new [] {1, 3, 5})]
+        [TestCase(4, new [] {1, 3})]
+        public void GetOddNumbers_WhenCalled_ReturnOddNumbersUpToLimit(int a, Array b)
+        {
+            var result = _math.GetOddNumbers(a);
+
+            Assert.That(result, Is.EquivalentTo(b));
+        }
+
+        [Test]
+        public void GetOddNumbers_LimitEqualToZero_ReturnEmptyList()
+        {
+            var result = _math.GetOddNumbers(0);
+
+            Assert.That(result, Is.Empty);
         }
     }
 }
